@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Gabriel">
+  <title>Pedidos</title>
+
+  <!-- Bootstrap core CSS-->
+  <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="./vendor/jquery/jquery.min.js"></script>
+  <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Angular -->
+  <script src="./vendor/angular/angular.min.js"></script>
+  <script src="./vendor/angular/angular-cookies.min.js"></script>
+  <script src="./vendor/angular/angular-locale_pt-br.js"></script>
+  <!-- Controller -->
+  <script src="./controllers/controller.js"></script>
+  <!-- Mascara monetária -->
+  <script src="./vendor/masks/jquery.mask.js"></script>
+  <script src="./vendor/masks/mask.js"></script>
+  <script src="./vendor/masks/rw-money-mask.min.js"></script>
+</head>
+
+<body ng-app="App">
+
+  <div ng-controller="Pedidos" style="padding: 20px">
+    <h2> Pedidos </h2>
+
+    <button class="btn btn-primary" style="margin-bottom: 20px" ng-click="voltarHome()">Voltar</button>
+
+    <div ng-init="carregaTabela()">
+      <table class="table table-bordered table-responsive-sm">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Data</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Cor</th>
+            <th colspan="2">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="pedido in pedidos">
+            <td>{{pedido.id}}</td>
+            <td>{{pedido.dt_pedido | date:'dd-MM-yyyy'}}</td>
+            <td>{{pedido.produto_descricao}}</td>
+            <td>{{pedido.quantidade}}</td>
+            <td>{{pedido.cor_descricao}}</td>
+            <td width="20px">
+              <button class="btn btn-primary" ng-click="editar(pedido)">Editar</button>
+            </td>
+            <td width="20px">
+              <button class="btn btn-danger" ng-click="remover(pedido)">Remover</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-success" style="margin-bottom: 20px" ng-click="novoCadastro()">Novo</button>
+          <button class="btn btn-warning" style="margin-bottom: 20px" ng-click="materiasPrimas()">Matérias Primas</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

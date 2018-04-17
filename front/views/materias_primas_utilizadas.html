@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Gabriel">
+  <title>Materias Primas</title>
+
+  <!-- Bootstrap core CSS-->
+  <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="./vendor/jquery/jquery.min.js"></script>
+  <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Angular -->
+  <script src="./vendor/angular/angular.min.js"></script>
+  <script src="./vendor/angular/angular-cookies.min.js"></script>
+  <script src="./vendor/angular/angular-locale_pt-br.js"></script>
+  <!-- Controller -->
+  <script src="./controllers/controller.js"></script>
+  <!-- Mascara monetária -->
+  <script src="./vendor/masks/jquery.mask.js"></script>
+  <script src="./vendor/masks/mask.js"></script>
+  <script src="./vendor/masks/rw-money-mask.min.js"></script>
+</head>
+
+<body ng-app="App">
+
+  <div ng-controller="MateriasPrimasUtilizadas" style="padding: 20px">
+    <h2> Materias Primas </h2>
+
+    <button class="btn btn-primary" style="margin-bottom: 20px" ng-click="voltar()">Voltar</button>
+
+    <div ng-init="init()">
+      <table class="table table-bordered table-responsive-sm">
+        <thead>
+          <tr>
+            <th>Matéria Prima</th>
+            <th>Cor</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="materiaPrimaUtilizada in materiasPrimasUtilizadas">
+            <td>{{materiaPrimaUtilizada.descricao}}</td>
+            <td>{{materiaPrimaUtilizada.cor}}</td>
+            <td>{{materiaPrimaUtilizada.quantidade}}</td>
+            <td>{{materiaPrimaUtilizada.valor | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br/>
+
+      <p>Total de matéria prima: {{totalMateriaPrima | currency}}</p>
+      <p>Verba de Marketing: {{(verbaMarketing | currency)}}</p>
+      <p>Custo da mão de obra: {{maoDeObra | currency}}</p>
+
+      <br/>
+
+      <p style="font-weight: bold">Total: {{total | currency}}</p>
+      <p style="font-weight: bold">Custo por produto: {{custoPorProduto | currency}}</p>
+      
+    </div>
+
+  </div>
+
+</body>
+
+</html>

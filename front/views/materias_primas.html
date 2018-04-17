@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Gabriel">
+  <title>Materias Primas</title>
+
+  <!-- Bootstrap core CSS-->
+  <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="./vendor/jquery/jquery.min.js"></script>
+  <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Angular -->
+  <script src="./vendor/angular/angular.min.js"></script>
+  <script src="./vendor/angular/angular-cookies.min.js"></script>
+  <script src="./vendor/angular/angular-locale_pt-br.js"></script>
+  <!-- Controller -->
+  <script src="./controllers/controller.js"></script>
+  <!-- Mascara monetária -->
+  <script src="./vendor/masks/jquery.mask.js"></script>
+  <script src="./vendor/masks/mask.js"></script>
+  <script src="./vendor/masks/rw-money-mask.min.js"></script>
+</head>
+
+<body ng-app="App">
+
+  <div ng-controller="MateriasPrimas" style="padding: 20px">
+    <h2> Materias Primas </h2>
+
+    <button class="btn btn-primary" style="margin-bottom: 20px" ng-click="voltar()">Voltar</button>
+
+    <div ng-init="carregaTabela()">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Custo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="materiaPrima in materiasPrimas">
+            <td>{{materiaPrima.descricao}}</td>
+            <td>
+              <form class="form-inline" name="form">
+                <div class="form-group mx-sm-3 mb-2">
+                  <input type="text" class="form-control" id="custo" ng-model="materiaPrima.custo" money-mask money-mask-prepend="R$" required>
+                </div>
+                <button type="submit" class="btn btn-success mb-2" ng-click="salvar(materiaPrima)" ng-disabled="materiaPrima.custo == 0 || materiaPrima.custo == materiaPrima.custo_inicial">Salvar</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
